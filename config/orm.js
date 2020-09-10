@@ -1,5 +1,15 @@
 const connection = require("./connection.js");
 
+function printQuestionMarks(num) {
+  var arr = [];
+
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
+
+  return arr.toString();
+}
+
 function objToSql(ob) {
     var arr = [];
   
@@ -19,8 +29,8 @@ function objToSql(ob) {
 const orm = {
     
     selectAll: function(tableInput, cb) {
-        var queryString = "SELECT * FROM " + tableInput + ";";
-        connection.query(queryString, function(err, result) {
+        let post = "SELECT * FROM burgers;";
+        connection.query(post, function(err, result) {
           if (err) {
             throw err;
           }
