@@ -10,30 +10,12 @@ function printQuestionMarks(num) {
   return arr.toString();
 }
 
-function objToSql(ob) {
-    var arr = [];
-  
-    for (var key in ob) {
-      var value = ob[key];
-      if (Object.hasOwnProperty.call(ob, key)) {
-        if (typeof value === "string" && value.indexOf(" ") >= 0) {
-          value = "'" + value + "'";
-        }
-        arr.push(key + "=" + value);
-      }
-    }
-    return arr.toString();
-  }
-  
-
 const orm = {
     
-    selectAll: function(tableInput, cb) {
+    selectAll: function(cb) {
         let post = "SELECT * FROM burgers;";
         connection.query(post, function(err, result) {
-          if (err) {
-            throw err;
-          }
+          if (err) throw err;
           cb(result);
         });
       },
@@ -50,27 +32,21 @@ const orm = {
         console.log(queryString);
     
         connection.query(queryString, vals, function(err, result) {
-          if (err) {
-            throw err;
-          }
-    
+          if (err) throw err;
           cb(result);
         });
       },
-    updateOne: function(table, objColVals, condition, cb) {
+    updateOne: function(table, condition, cb) {
         var queryString = "UPDATE " + table;
-    
+
         queryString += " SET ";
-        queryString += objToSql(objColVals);
+        queryString += "devoured = 1"
         queryString += " WHERE ";
         queryString += condition;
     
         console.log(queryString);
         connection.query(queryString, function(err, result) {
-          if (err) {
-            throw err;
-          }
-    
+          if (err) throw err;
           cb(result);
         });
       }

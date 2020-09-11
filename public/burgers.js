@@ -22,7 +22,8 @@ $(function() {
       event.preventDefault();
   
       let newBurger = {
-        burger_name: $("#add").val()
+        burger_name: $("#add").val(),
+        devoured: 0
       };
 
       $.ajax("/api/burgers", {
