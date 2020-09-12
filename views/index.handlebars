@@ -1,40 +1,43 @@
-<h1>Burgers!</h1>
-
-<h2>Burgers that are not devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-  {{#unless devoured}}
-  <li>
-    {{burger_name}}
-
-    <button class="change-devoured" data-id="{{id}}" data-newDevoured="{{devoured}}">
-      {{#unless devoured}}Devour{{/unless}}
-    </button>
-  </li>
-  {{/unless}}
-  {{/each}}
-</ul>
-
-<h2>Burgers that are devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-  {{#if devoured}}
-  <li>
-    {{burger_name}}
-  </li>
-  {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="addBurger">
-
-  <div>
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="add" name="burger_name">
+<div class="jumbotron">
+  <h1>Eat Da Burger!</h1>
+  <img src="/assets/img/burger.png" class="float-right rounded-circle">
+</div>
+<hr>
+<main class="row">
+  <div class="col-md-6">
+    <h2>Undevoured Burgers:</h2>
+    <ul>
+      {{#each burgers}}
+      {{#unless devoured}}
+      <li>
+        {{burger_name}}
+        <button class="change-devoured" data-id="{{id}}" data-newDevoured="{{devoured}}">
+          {{#unless devoured}}Devour{{/unless}}
+        </button>
+      </li>
+      {{/unless}}
+      {{/each}}
+    </ul>
+    <h2>Add a Burger</h2>
+    <form class="addBurger">
+      <div>
+        <label for="ca">Burger Name:</label>
+        <input type="text" id="add" name="burger_name">
+      </div>
+      <button type="submit">Add Burger</button>
+    </form>
   </div>
-  
-  <button type="submit">Add Burger</button>
-</form>
+  <div class="col-md-6">
+    <h2>Deliciously Devoured Burgers:</h2>
+    <ul>
+      {{#each burgers}}
+      {{#if devoured}}
+      <li>
+        {{burger_name}}
+      </li>
+      {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+</main>
+<hr>
